@@ -1,0 +1,156 @@
+<div>
+  <form [formGroup]="form">
+    <!-- Card Types Select -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="cardType" class="">Card Types</label>
+      <div class="col-span-2">
+        <select
+          id="cardType"
+          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-2 focus:border-blue-400"
+          formControlName="cardSchemeId"
+          (change)="changeSelectCardSchemes()"
+        >
+          <option selected value="">- Select Card Types -</option>
+          <option *ngFor="let cardTypes of cardSchemes" [value]="cardTypes.id">
+            {{ cardTypes.name | uppercase }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            form['controls']['cardSchemeId'].invalid &&
+            (form['controls']['cardSchemeId'].dirty ||
+              form['controls']['cardSchemeId'].touched)
+          "
+          class="text-red-500"
+        >
+          Card type is required.
+        </div>
+      </div>
+    </div>
+    <!-- Card Number Input -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="cardNumber">Card Number</label>
+      <div class="col-span-2">
+        <input
+          formControlName="cardNumber"
+          numberOnly
+          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-2 focus:border-blue-400"
+          id="cardNumber"
+          type="text"
+          placeholder=""
+          minlength="15"
+          [maxlength]="cardNumberMaxLength"
+        />
+        <div
+          *ngIf="
+            form['controls']['cardNumber'].invalid &&
+            (form['controls']['cardNumber'].dirty ||
+              form['controls']['cardNumber'].touched)
+          "
+          class="text-red-500"
+        >
+          <div *ngIf="form['controls']['cardNumber'].errors?.['required']">
+            Card number is required.
+          </div>
+          <div
+            *ngIf="form['controls']['cardNumber'].errors?.['invalidCardNumber'] && !form['controls']['cardNumber'].errors?.['required']"
+          >
+            Invalid card number.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Expiry Input -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="expiry">Expiry</label>
+      <div class="col-span-2">
+        <input
+          formControlName="expiry"
+          numberOnly
+          class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:border-2 focus:border-blue-400 w-[100px]"
+          id="expiry"
+          type="text"
+          placeholder="MM/YY"
+          expiryDateInput
+        />
+        <div
+          *ngIf="
+            form['controls']['expiry'].invalid &&
+            (form['controls']['expiry'].dirty ||
+              form['controls']['expiry'].touched)
+          "
+          class="text-red-500"
+        >
+          <div *ngIf="form['controls']['expiry'].errors?.['required']">
+            Expiry date is required.
+          </div>
+          <div
+            *ngIf="form['controls']['expiry'].errors?.['invalidExpiry'] && !form['controls']['expiry'].errors?.['required']"
+          >
+            Format should be MM/YY.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Name Input -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="name">Name</label>
+      <div class="col-span-2">
+        <input
+          formControlName="name"
+          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-2 focus:border-blue-400"
+          id="name"
+          type="text"
+          placeholder=""
+          maxlength="30"
+          alphabetSpaceOnly
+        />
+        <div
+          *ngIf="
+            form['controls']['name'].invalid &&
+            (form['controls']['name'].dirty || form['controls']['name'].touched)
+          "
+          class="text-red-500"
+        >
+          <div *ngIf="form['controls']['name'].errors?.['required']">
+            Name is required.
+          </div>
+          <div *ngIf="form['controls']['name'].errors?.['invalidName']">
+            Only alphabet and spaces allowed.
+          </div>
+          <div *ngIf="form['controls']['name'].errors?.['maxlength']">
+            Name cannot exceed 30 characters.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Email Input -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="email">Email</label>
+      <div class="col-span-2">
+        <input
+          formControlName="email"
+          class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:border-blue-400"
+          id="email"
+          type="email"
+          placeholder=""
+        />
+        <div
+          *ngIf="
+            form['controls']['email'].invalid &&
+            (form['controls']['email'].dirty ||
+              form['controls']['email'].touched)
+          "
+          class="text-red-500"
+        >
+          <div *ngIf="form['controls']['email'].errors?.['invalidEmail']">
+            Invalid email address.
+          </div>
+          <div *ngIf="form['controls']['email'].errors?.['maxlength']">
+            Email cannot exceed 50 characters.
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

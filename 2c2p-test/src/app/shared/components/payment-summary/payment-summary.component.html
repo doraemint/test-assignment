@@ -1,0 +1,9 @@
+<div [ngClass]="responseMessage.invoiceNo ? 'text-blue-500' : 'text-red-500'">
+  <p>{{ responseMessage.message }}</p>
+
+  <br />
+
+  <span [ngClass]="{ hidden: !responseMessage.invoiceNo}">
+    Invoice: {{ responseMessage.invoiceNo }}
+  </span>
+</div>

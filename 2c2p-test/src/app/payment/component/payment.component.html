@@ -1,0 +1,20 @@
+<div class="container p-[20px] lg:px-[40px] lg:grid lg:grid-cols-2">
+  <app-payment-detail />
+  <ng-container *ngIf="isDisplayForm; else paymentSummary">
+    <app-payment-form #paymentFormRef />
+    <!-- Confirm Payment Button -->
+    <div class="text-center pt-[50px] md:col-start-2">
+      <button
+        [disabled]="paymentForm.invalid"
+        (click)="submit()"
+        class="btn border-2 bg-white border-gray-700 rounded-lg p-[10px] w-full md:w-auto disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Confirm Payment
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #paymentSummary>
+    <app-payment-summary [responseMessage]="resultResponse" />
+  </ng-template>
+</div>
