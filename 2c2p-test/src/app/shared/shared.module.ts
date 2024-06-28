@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NumberOnlyInputDirective } from './directives/number-only-input.directive';
 import { AlphabetSpaceInputDirective } from './directives/alphabet-space-input.directive';
 import { ExpiryDateInputDirective } from './directives/expiry-date-input.directive';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -22,6 +23,8 @@ import { ExpiryDateInputDirective } from './directives/expiry-date-input.directi
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule
+
   ],
   exports: [
     PaymentDetailComponent,

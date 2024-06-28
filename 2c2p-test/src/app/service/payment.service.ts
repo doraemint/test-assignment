@@ -12,7 +12,8 @@ export class PaymentService {
 
   urlGetCardScehemes = 'https://uat3ds.2c2p.com/emv3ds/mockservice/masterdata/cardschemes';
   urlSubmitPayment = 'https://uat3ds.2c2p.com/emv3ds/mockservice/payment';
-
+  urlGetCountry = 'https://restcountries.com/v3.1/all';
+  
   constructor(private http: HttpClient) {
   }
 
@@ -28,4 +29,7 @@ export class PaymentService {
     return this.http.post<IResponseResultPayment>(this.urlSubmitPayment, paymentData);
   }
 
+  getCountry() {
+    return this.http.get<any>(this.urlGetCountry);
+  }
 }

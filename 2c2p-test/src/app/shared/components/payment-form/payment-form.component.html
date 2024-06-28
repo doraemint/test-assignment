@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+
     <!-- Card Number Input -->
     <div class="mt-[16px] lg:grid lg:grid-cols-3">
       <label for="cardNumber">Card Number</label>
@@ -60,6 +61,7 @@
         </div>
       </div>
     </div>
+
     <!-- Expiry Input -->
     <div class="mt-[16px] lg:grid lg:grid-cols-3">
       <label for="expiry">Expiry</label>
@@ -92,6 +94,22 @@
         </div>
       </div>
     </div>
+
+    <!-- Country -->
+    <div class="mt-[16px] lg:grid lg:grid-cols-3">
+      <label for="country">Country</label>
+      <div class="col-span-2">
+        <ng-select
+          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-2 focus:border-blue-400 custom-ng-select"
+          [items]="countryData"
+          bindLabel="name"
+          [searchFn]="customSearchFn"
+          formControlName="country"
+        >
+        </ng-select>
+      </div>
+    </div>
+
     <!-- Name Input -->
     <div class="mt-[16px] lg:grid lg:grid-cols-3">
       <label for="name">Name</label>
@@ -124,6 +142,7 @@
         </div>
       </div>
     </div>
+
     <!-- Email Input -->
     <div class="mt-[16px] lg:grid lg:grid-cols-3">
       <label for="email">Email</label>
